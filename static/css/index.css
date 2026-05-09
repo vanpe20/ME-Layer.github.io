@@ -65,9 +65,9 @@ body {
 
 .project-logo {
     flex: 0 0 auto;
-    height: 150px;
+    height: 160px;
     object-fit: contain;
-    width: 150px;
+    width: 160px;
 }
 
 .publication-title-row .publication-title {
