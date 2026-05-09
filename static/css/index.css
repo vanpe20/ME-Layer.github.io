@@ -54,6 +54,26 @@ body {
     font-family: 'Google Sans', sans-serif;
 }
 
+.publication-title-row {
+    align-items: center;
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    margin-bottom: 0.9rem;
+}
+
+.project-logo {
+    flex: 0 0 auto;
+    height: 148px;
+    object-fit: contain;
+    width: 148px;
+}
+
+.publication-title-row .publication-title {
+    margin-bottom: 0;
+    text-align: left;
+}
+
 .publication-authors {
     font-family: 'Google Sans', sans-serif;
 }
@@ -85,37 +105,70 @@ body {
 }
 
 .publication-affiliations {
-    align-items: flex-start;
+    align-items: center;
     display: flex;
     flex-wrap: wrap;
     font-family: 'Google Sans', sans-serif;
-    font-size: 1.15rem;
-    gap: 16px 34px;
+    gap: 14px 34px;
     justify-content: center;
-    margin-top: 1.1rem;
+    margin-top: 1.15rem;
 }
 
 .affiliation-block {
     align-items: center;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 9px;
-    min-width: 180px;
-    text-align: center;
+    min-width: 0;
+    text-align: left;
 }
 
 .affiliation-logo-wrap {
     align-items: center;
     display: flex;
-    height: 76px;
+    flex: 0 0 auto;
+    height: 58px;
     justify-content: center;
-    width: 116px;
+    width: 58px;
 }
 
 .affiliation-logo {
     max-height: 100%;
     max-width: 100%;
     object-fit: contain;
+}
+
+.affiliation-name {
+    color: hsl(214, 90%, 58%);
+    font-size: 1.55rem;
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
+.affiliation-name sup {
+    color: #666;
+    font-size: 0.72em;
+    margin-right: 5px;
+}
+
+@media screen and (max-width: 768px) {
+    .publication-title-row {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .project-logo {
+        height: 118px;
+        width: 118px;
+    }
+
+    .publication-title-row .publication-title {
+        text-align: center;
+    }
+
+    .affiliation-name {
+        font-size: 1.25rem;
+    }
 }
 
 .publication-banner img {}
