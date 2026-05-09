@@ -64,9 +64,9 @@ body {
 
 .project-logo {
     flex: 0 0 auto;
-    height: 148px;
+    height: 100px;
     object-fit: contain;
-    width: 148px;
+    width: 100px;
 }
 
 .publication-title-row .publication-title {
@@ -106,21 +106,25 @@ body {
 
 .publication-affiliations {
     align-items: center;
-    display: flex;
-    flex-wrap: wrap;
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: nowrap;
     font-family: 'Google Sans', sans-serif;
-    gap: 14px 34px;
+    gap: 14px 32px;
     justify-content: center;
     margin-top: 1.15rem;
+    width: 100%;
 }
 
 .affiliation-block {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
+    align-items: center !important;
+    display: inline-flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
     gap: 9px;
     min-width: 0;
     text-align: left;
+    white-space: nowrap;
 }
 
 .affiliation-logo-wrap {
@@ -168,6 +172,10 @@ body {
 
     .affiliation-name {
         font-size: 1.25rem;
+    }
+
+    .publication-affiliations {
+        flex-wrap: wrap;
     }
 }
 
