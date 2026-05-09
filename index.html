@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+    <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A Single Layer to Explain Them All: Understanding Massive Activations in Large Language Models</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-PYVRSFMDRL');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="icon" href="./static/images/logo.png">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+
+    <style>
+        .wide-container {
+            max-width: 1200px;
+            /* 新的最大宽度 */
+            flex-grow: 1;
+            margin: 0 auto;
+            position: relative;
+            width: auto;
+        }
+        
+        .flex-container {
+            display: flex;
+            /* 启用Flexbox布局 */
+            justify-content: center;
+            /* 水平居中 */
+            align-items: center;
+            /* 垂直居中 */
+        }
+        
+        .hero-body {
+            flex: 1.7;
+            /* 第一个div占两份 */
+            text-align: center;
+            /* 文本居中显示 */
+        }
+        
+        .new-div {
+            flex: 1;
+            /* 第二个div占一份 */
+            text-align: center;
+            /* 文本居中显示 */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+                <a class="navbar-item" href="https://zbox1005.github.io/">
+                    <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+                </a>
+
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+          More Research
+        </a>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+                        <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+                        <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+                        <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </nav> -->
+
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <div class="column has-text-centered">
+                            <img src="./static/images/logo.png" style="width:110px; float: left;">
+                        </div>
+                        <h1 class="title is-1 publication-title">
+                        A Single Layer to Explain Them All:<br>
+                        Understanding Massive Activations in Large Language Models
+                        </h1>   
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">
+              <a href="https://vanpe20.github.io/">Zeru Shi</a><sup>1</sup>,</span>
+                            <span class="author-block">
+              <a href="https://zhentingwang.github.io/">Zhenting Wang</a><sup>1</sup>,</span>
+                            <span class="author-block">
+              <a href="https://yangfan.sites.wfu.edu/">Fan Yang</a><sup>2</sup>,
+            </span>
+                            <span class="author-block">
+              <a href="https://wqfcr.github.io/">Qifan Wang</a><sup>3</sup>,
+            </span>
+                            <span class="author-block">
+              <a href="https://www.ruixiangtang.net/">Ruixiang Tang</a><sup>1</sup>,
+            </span>
+                            <!-- <span class="author-block">
+              <a href="http://www.ricardomartinbrualla.com">Ricardo Martin-Brualla</a><sup>2</sup>
+            </span> -->
+                        </div>
+
+                        <div class="publication-affiliations">
+                            <div class="affiliation-block">
+                                <div class="affiliation-logo-wrap">
+                                    <img class="affiliation-logo" src="static/images/rutgers.jpg" alt="Rutgers University logo">
+                                </div>
+                                <span><sup>1</sup>Rutgers University</span>
+                            </div>
+                            <div class="affiliation-block">
+                                <div class="affiliation-logo-wrap">
+                                    <img class="affiliation-logo" src="static/images/wake.jpg" alt="Wake Forest University logo">
+                                </div>
+                                <span><sup>2</sup>Wake Forest University</span>
+                            </div>
+                            <div class="affiliation-block">
+                                <div class="affiliation-logo-wrap">
+                                    <img class="affiliation-logo" src="static/images/meta.png" alt="Meta AI logo">
+                                </div>
+                                <span><sup>3</sup>Meta AI</span>
+                            </div>
+                        </div>
+
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <!-- PDF Link. -->
+                                <span class="link-block">
+                <a href="https://icml.cc/virtual/2026/poster/61433"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                                <span>Paper</span>
+                                </a>
+                                </span>
+                                <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                                <span>arXiv</span>
+                                </a>
+                                </span>
+                                <!-- Video Link. -->
+                                <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                                <span>Video</span>
+                                </a>
+                                </span> -->
+                                <!-- Code Link. -->
+                                <span class="link-block">
+                <a href="https://github.com/vanpe20/ME_Layer"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                                <span>Code</span>
+                                </a>
+                                </span>
+                                <!-- Model Link. -->
+                                <span class="link-block">
+                <a href="https://huggingface.co/DarkBluee/WeMask"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-cube"></i>
+                  </span>
+                                <span>Model</span>
+                                </a>
+                                </span>
+                                <!-- Dataset Link. -->
+                                <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                                <span>Data</span>
+                                </a> -->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="hero teaser">
+        <div class="wide-container is-max-desktop">
+            <!-- Flex Container -->
+            <div class="flex-container">
+                <!-- 原有的div -->
+                <div class="hero-body">
+                    <img src="static/images/figure1.png" alt="Effect of CoVer">
+                    <h2 class="has-text-centered">
+                        Massive activation will appear in <span class="dnerf">MELayer</span> after FFN.
+                    </h2>
+                </div>
+                <!-- 新插入的div -->
+                <div class="new-div">
+                    <div class="hero-body">
+                        <img src="static/images/figure2.png" alt="Figure 2" style="width: 100%; height: auto; display: block; margin: 0 auto;">
+                        <h2 class="has-text-centered">
+                            This is the schematic diagram of WeMask.
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="hero is-light is-small">
+        <div class="container hero-body is-max-desktop">
+            <!-- Abstract. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            We investigate the origins of massive activations in large language models (LLMs) and identify a specific layer named the Massive Emergence Layer (ME Layer), that is consistently observed across model families, where massive activations first emerge and subsequently propagate to deeper layers through residual connections. We show that, within the ME Layer both the RMSNorm and the FFN parameters jointly contribute to the emergence of massive activations. Once formed, the massive activation token representation remains largely invariant across layers, reducing the diversity of hidden representations passed to the attention module. Motivated by this limitation, we propose a simple and effective method to reduce the rigidity of the massive activation token. Our approach consistently improves LLM performance across multiple tasks, including instruction following and math reasoning, in both training free and fine tuning settings. Moreover, we show that our method mitigates attention sinks by selectively weakening their influence, elucidating their origin at the hidden state level and shedding new light on principled mitigation strategies.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--/ Abstract. -->
+
+            <!-- Paper video. -->
+            <!-- <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Video</h2>
+                    <div class="publication-video">
+                        <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div> -->
+            <!--/ Paper video. -->
+        </div>
+    </section>
+
+    <br>
+    <br>
+
+    <section class="hero">
+        <div class="container is-max-desktop">
+            <div class="hero-body is-centered has-text-centered">
+                <h2 class="title is-3"> Emergence of ME Layer</h2>
+                <img src="static/images/figure3.png" alt="Emergence of ME Layer">
+                <h2 class="subtitle has-text-centered">
+                    We analyze Massive activations emerge only at the <span class="dnerf">ME Layer</span> driven by unusually large and directionally aligned RMSNorm and FFN parameters that selectively amplify the massive-activation token
+                </h2>
+            </div>
+        </div>
+    </section>
+
+    <section class="hero">
+        <div class="container is-max-desktop">
+            <div class="hero-body is-centered has-text-centered">
+                <h2 class="title is-3">The Direction of Massive Activation</h2>
+                <img src="static/images/framework.png" alt="The Direction of Massive Activation">
+                <h2 class="subtitle has-text-centered">
+                Once the massive activation emerges at the ME Layer the massive activation’s hidden state exhibits strong input-invariant directionality and remains stable across subsequent layers.                    <!-- <span class="dnerf">CoVer</span> with multiple inputs performs a better ID-OOD separability -->
+                </h2>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="hero">
+        <div class="container is-max-desktop">
+            <div class="hero-body is-centered has-text-centered">
+                <h2 class="title is-3">Experimental Results</h2>
+                <br>
+                <h2 class="subtitle has-text-centered">
+                    We propose WeMask to mitigate rigid representations in hidden states and improve LLM performance. We evaluate the effectiveness of WeMask on various tasks, including instruction following and math reasoning, in both training free and fine tuning settings.
+                </h2>
+                <img src="static/images/table.png" alt="Confidence Average">
+                <h2 class="has-text-centered">
+                    We use WeMask to fine tuning the model on Math tasks and safety tasks, shows that WeMask can improve model's performance.
+                </h2>
+                <br>
+                <img src="static/images/main-results-clip.jpg" alt="Confidence Average">
+                <h2 class="has-text-centered">
+                    The results compared with VLM-based OOD detection methods. <span class="dnerf">CoVer</span> consistently achieves better performance across the four OOD datasets
+                </h2>
+                <br>
+                <br>
+                <h2 class="subtitle has-text-centered">
+Additionally, we visualize the emergence of attention sinks before and after the ME Layer using heatmaps, and further illustrate how WeMask mitigates the attention sink phenomenon.                </h2>
+                <img src="static/images/figure5.png" alt="Confidence Average">
+                <h2 class="has-text-centered">
+                    Results show that WeMask can mitigate the attention sink, which provide a new insight that compared to completely eliminating attention sinks, attenuating their influence may be a more practical and effective solution.
+                </h2>
+            </div>
+        </div>
+    </section>
+
+    <br>
+    <br>
+
+    <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+            <h2 class="title">BibTeX</h2>
+            <pre><code>
+                
+            </code></pre>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="content has-text-centered">
+                <a class="icon-link" href="https://neurips.cc/virtual/2024/poster/94752">
+                    <i class="fas fa-file-pdf"></i>
+                </a>
+                <a class="icon-link" href="https://github.com/ZBox1005" class="external-link" disabled>
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="content">
+                        <p>
+                            This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+                        </p>
+                        <!-- <p>
+                            This means you are free to borrow the <a href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website, we just ask that you link back to this page in the footer. Please remember to remove the analytics
+                            code included in the header of the website which you do not want on your website.
+                        </p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
