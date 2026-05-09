@@ -199,6 +199,19 @@ body {
     width: 100%;
 }
 
+.teaser-figure-wrap {
+    align-items: flex-end;
+    display: flex;
+    height: 245px;
+    justify-content: center;
+    width: 100%;
+}
+
+.teaser-caption {
+    margin-top: 12px;
+    min-height: 3rem;
+}
+
 .figure3-image {
     display: block;
     height: 150px;
