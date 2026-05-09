@@ -57,21 +57,22 @@ body {
 .publication-title-row {
     align-items: center;
     display: flex;
-    gap: 18px;
+    flex-direction: column;
+    gap: 6px;
     justify-content: center;
-    margin-bottom: 0.9rem;
+    margin-bottom: 1rem;
 }
 
 .project-logo {
     flex: 0 0 auto;
-    height: 100px;
+    height: 118px;
     object-fit: contain;
-    width: 100px;
+    width: 118px;
 }
 
 .publication-title-row .publication-title {
     margin-bottom: 0;
-    text-align: left;
+    text-align: center;
 }
 
 .publication-authors {
@@ -144,7 +145,7 @@ body {
 
 .affiliation-name {
     color: hsl(214, 90%, 58%);
-    font-size: 1.55rem;
+    font-size: 1.18rem;
     line-height: 1.1;
     white-space: nowrap;
 }
@@ -171,11 +172,53 @@ body {
     }
 
     .affiliation-name {
-        font-size: 1.25rem;
+        font-size: 1.08rem;
     }
 
     .publication-affiliations {
         flex-wrap: wrap;
+    }
+}
+
+.teaser .flex-container {
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.teaser .flex-container > .hero-body,
+.teaser .flex-container > .new-div {
+    flex: 1 1 0;
+    max-width: calc(50% - 12px);
+    min-width: 0;
+}
+
+.teaser-figure {
+    display: block;
+    height: auto;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.figure3-container {
+    max-width: 1120px !important;
+}
+
+.figure3-image {
+    display: block;
+    height: auto;
+    margin: 0 auto;
+    width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .teaser .flex-container {
+        flex-direction: column;
+    }
+
+    .teaser .flex-container > .hero-body,
+    .teaser .flex-container > .new-div {
+        max-width: 100%;
+        width: 100%;
     }
 }
 
