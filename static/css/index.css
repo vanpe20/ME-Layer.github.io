@@ -58,16 +58,16 @@ body {
     align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 2px;
     justify-content: center;
     margin-bottom: 1rem;
 }
 
 .project-logo {
     flex: 0 0 auto;
-    height: 118px;
+    height: 128px;
     object-fit: contain;
-    width: 118px;
+    width: 128px;
 }
 
 .publication-title-row .publication-title {
@@ -199,14 +199,11 @@ body {
     width: 100%;
 }
 
-.figure3-container {
-    max-width: 1120px !important;
-}
-
 .figure3-image {
     display: block;
-    height: auto;
+    height: 150px;
     margin: 0 auto;
+    object-fit: fill;
     width: 100%;
 }
 
