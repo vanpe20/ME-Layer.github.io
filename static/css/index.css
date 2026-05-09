@@ -58,16 +58,16 @@ body {
     align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 0;
     justify-content: center;
     margin-bottom: 1rem;
 }
 
 .project-logo {
     flex: 0 0 auto;
-    height: 128px;
+    height: 138px;
     object-fit: contain;
-    width: 128px;
+    width: 138px;
 }
 
 .publication-title-row .publication-title {
