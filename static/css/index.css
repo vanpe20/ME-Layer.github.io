@@ -117,16 +117,6 @@ body {
     width: 100%;
 }
 
-.publication-conference {
-    color: #2563eb;
-    font-family: 'Google Sans', sans-serif;
-    font-size: 1.18rem;
-    font-weight: 700;
-    line-height: 1.1;
-    margin: 1rem 0 0.85rem;
-    text-align: center;
-}
-
 .affiliation-block {
     align-items: center !important;
     display: inline-flex !important;
@@ -187,11 +177,6 @@ body {
 
     .publication-affiliations {
         flex-wrap: wrap;
-    }
-
-    .publication-conference {
-        font-size: 1.08rem;
-        margin-top: 1rem;
     }
 }
 
