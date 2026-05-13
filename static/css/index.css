@@ -118,12 +118,12 @@ body {
 }
 
 .publication-conference {
-    color: #ff0000;
+    color: #2563eb;
     font-family: 'Google Sans', sans-serif;
-    font-size: 2rem;
+    font-size: 1.18rem;
     font-weight: 700;
-    line-height: 1.2;
-    margin: 1.35rem 0 0.85rem;
+    line-height: 1.1;
+    margin: 1rem 0 0.85rem;
     text-align: center;
 }
 
@@ -190,8 +190,8 @@ body {
     }
 
     .publication-conference {
-        font-size: 1.55rem;
-        margin-top: 1.1rem;
+        font-size: 1.08rem;
+        margin-top: 1rem;
     }
 }
 
